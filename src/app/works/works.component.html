@@ -1,10 +1,11 @@
-
-  <div>
-    <tabset>
-      <tab heading="censor" id="tab1"><app-censor></app-censor></tab>
-      <tab heading="users" id="tab2"><app-user-login-data></app-user-login-data></tab>
-      <tab heading="My plans" id="tab3"><app-my-learn-plan></app-my-learn-plan></tab>
-    </tabset>
-    <!-- <a [routerLink]="[ './home', routeParam:home ]">name</a> -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link" [routerLink]="[ 'censor' ]" routerLinkActive="active">Censor</a>
+    <a class="nav-item nav-link" [routerLink]="[ 'users' ]" routerLinkActive="active">Users</a>
+    <a class="nav-item nav-link" [routerLink]="[ 'planing' ]" routerLinkActive="active">My plans</a>
+    <a class="nav-item nav-link" [routerLink]="[ '/home' ]" routerLinkActive="active">Home</a>
   </div>
-   
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <router-outlet></router-outlet>
+</div>
