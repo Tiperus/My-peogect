@@ -1,0 +1,58 @@
+<div class="main container-fluid bg-light max-width: 100%max-height: 100%">
+    <h1>Plan your day!</h1>
+    <h2>User: {{userData}}Count of Task {{arrUserLength}}</h2>
+    <hr>
+    <form>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Add your task" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="nOfTask" name="nOfTask">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button" id="button-addon2" (click)="addTask()">Add</button>
+            </div>
+          </div>
+    </form>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Check</th>
+                <th scope="col">In progress/done</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of arrTask; let i=index">
+              <th>{{i}}</th>
+              <td>{{task.nameOfTask}}</td>
+              <td>
+                <div class="input-group-text d-flex justify-content-center">
+                    <input type="checkbox"  [(ngModel)]="task.checkProgressTask"  >
+                </div>
+              </td>
+              <td ><ng-container *ngIf="task.checkProgressTask; else elseTemplate">
+                <p class="text-success">done</p>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <p class="text-danger">in process</p> 
+              </ng-template>
+              </td>
+              <td><button type="button" (click)="editTask (i)" [disabled]="task.checkProgressTask" class="btn btn-warning"> Edit </button></td>
+              <td><button type="button" (click)="deleteTask(i)"  [disabled]="!task.checkProgressTask" class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr class="table-danger" *ngIf="openEdin">
+                <th>{{indexForEdit}}</th>
+                <td>
+                    <input type="text" class="form-control"  [(ngModel)]="nOfTask" name="nOfTask">
+                </td>
+                <td></td>
+                <td></td>
+                <td><button type="button" (click)="saveEditTask(indexForEdit)" class="btn btn-success"> Save </button></td>
+                <td></td>
+            </tr>
+
+            
+    </table>
+</div>
+
